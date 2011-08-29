@@ -1,5 +1,7 @@
 # System files
 .DS_Store
-
+.svn
+*~
+.*.swp
 # Dropbox Files
 .dropbox

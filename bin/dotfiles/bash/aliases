@@ -1,7 +1,7 @@
 # Command Enhancements
 
 # Utility
-alias reload='source ~/bin/dotfiles/bash/aliases'
+alias reload='. ~/.bash_profile'
 alias ea='mate -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
 alias ee="mate ~/bin/dotfiles/bash/env"
 
@@ -16,6 +16,7 @@ alias a='ls -A' # -A all except literal . ..
 alias la="ls -A -l -G"
 alias c='clear'
 alias cdd='cd -'  # goto last dir cd'ed from
+alias cds='cd '~/Sites'
 alias cl='clear; l'
 function cdc() { 
     cd $1; ls 
@@ -60,11 +61,6 @@ function pless() {
 alias tu='top -o cpu' # cpu
 alias tm='top -o vsize' # memory
 
-# Mercurial hg
-function new-hg() {
-    ssh hg@example.com "hg init $1"
-    hg clone ssh://hg@example.com/$1
-}
 
 # Git
 alias ungit="find . -name '.git' -exec rm -rf {} \;"
@@ -110,15 +106,6 @@ function new-git() {
   git config push.default current
 }
 
-# Text editing
-# Emacs
-alias em="open -a Emacs"
-alias emm="open -a Emacs ."
-# Regenerate TAGS file from file arguments
-function ct() {
-  rm -f TAGS
-  etags --append --output=TAGS $*
-}
 
 # TextMate
 alias et="mate"
@@ -143,6 +130,11 @@ alias ss='./script/server'
 alias tl='tail -f log/*.log'
 alias ts='thin start'
 
+alias bdbm='bundle exec rake db:migrate'
+alias bdbp='bundle exec rake db:test:prepare'
+alias bdbc='bundle exec rake db:test:clone'
+
+
 # TDD / BDD
 
 alias aa='autotest'
@@ -159,39 +151,6 @@ function jsc() {
   jsl -conf /etc/jsl/jsl.conf -process $1 
 }
 
-function aiff2mp3() { 
-  lame -h -V 0 $1.aif $1.mp3 
-}
-function wav2mp3() { 
-  lame -h -V 0 $1.wav $1.mp3 
-}
-
-
-# XCode
-# Analyze release build
-alias sx="xcodebuild clean && ~/src/checker-0.146/scan-build -k -V xcodebuild"
-# Analyze test build
-alias sxt="xcodebuild -target Test clean && ~/src/checker-0.146/scan-build -k -V xcodebuild -target Test"
-# Call with -target Foo
-function sxx() { 
-  xcodebuild $* clean && ~/src/checker-0.146/scan-build -k -V xcodebuild $* 
-}
-
-alias ox="open *.xcodeproj"
-
-# Nginx
-function nginx_stop() {
-    ps ax | grep nginx | cut -d " " -f 1 | xargs sudo kill -9
-}
-function nginx_start() {
-    sudo /opt/nginx/sbin/nginx
-}
-
-# TaskPaper
-function new-tp() {
-    touch $1.taskpaper
-    open $1.taskpaper
-}
 
 
 # From http://github.com/suztomo/dotfiles
@@ -233,25 +192,13 @@ function __rm_single_file(){
 
 
 
-// Flint Aliases
-alias cdt="cd \$(pwd | grep -E -o ^.*trunk)"
-alias cdw="cd \$(pwd | grep -E -o ^.*workspace[0-9]*)"
+# SVN
 alias svnaddall="svn status | grep ^? | awk '{print \$2}' | xargs -r /usr/share/subversion1.6.12/subversion/svn/svn add"
-alias cleardata="rm -f ~/public_html/builds/*/WEB-INF/*-config.data"
-cdp () {
-        RESULTS=`ls -1 ~/workspace | grep -c $1`
-        case $RESULTS in
-        0)
-                echo "No results found."
-                ;;
-        1)
-                cd ~/workspace/`ls -1 ~/workspace2 | grep $1`
-                ;;
-        *)
-                echo "The following were found:"
-                ls -1 ~/workspace | grep $1
-                ;;
-        esac
-}
+
+
+# Envato
+alias bswf = 'bundle exec rake swarm:features'
+alias bsws = 'bundle exec rake swarm:spec'
+alias cdm='cd '~/Sites/marketplace'
 
 
