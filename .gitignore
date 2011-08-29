@@ -5,3 +5,4 @@
 .*.swp
 # Dropbox Files
 .dropbox
+.idea/*

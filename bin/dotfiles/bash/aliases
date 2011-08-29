@@ -7,16 +7,13 @@ alias ee="mate ~/bin/dotfiles/bash/env"
 
 # Quicker cd
 alias cg='cd /Library/Ruby/Gems/1.8/gems/'
-function cr() {
- cd ~/repos/$*
-}
 
 # Common -- Some are from Damian Conway
 alias a='ls -A' # -A all except literal . ..
 alias la="ls -A -l -G"
 alias c='clear'
 alias cdd='cd -'  # goto last dir cd'ed from
-alias cds='cd '~/Sites'
+alias cds='cd ~/Sites'
 alias cl='clear; l'
 function cdc() { 
     cd $1; ls 
@@ -197,8 +194,8 @@ alias svnaddall="svn status | grep ^? | awk '{print \$2}' | xargs -r /usr/share/
 
 
 # Envato
-alias bswf = 'bundle exec rake swarm:features'
-alias bsws = 'bundle exec rake swarm:spec'
-alias cdm='cd '~/Sites/marketplace'
+alias bswf='bundle exec rake swarm:features'
+alias bsws='bundle exec rake swarm:spec'
+alias cdm='cd ~/Sites/marketplace'
 
 
