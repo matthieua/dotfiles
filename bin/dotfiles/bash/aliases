@@ -1,25 +1,7 @@
-# Command Enhancements
-
-# Utility
-alias reload='. ~/.bash_profile'
-alias ea='mate -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
-alias ee="mate ~/bin/dotfiles/bash/env"
-
-# Quicker cd
-alias cg='cd /Library/Ruby/Gems/1.8/gems/'
-
 # Common -- Some are from Damian Conway
 alias a='ls -A' # -A all except literal . ..
 alias la="ls -A -l -G"
 alias c='clear'
-alias cdd='cd -'  # goto last dir cd'ed from
-alias cds='cd ~/Sites'
-alias cl='clear; l'
-function cdc() { 
-    cd $1; ls 
-}
-alias cls='clear; ls'
-alias h='history'
 alias l.='ls -d .[^.]*'
 alias l='ls -lhGt'  # -l long listing, most recent first
                     # -G color
@@ -27,14 +9,7 @@ alias lh="ls -lh"
 alias ll='ls -lhG'  # -l long listing, human readable, no group info
 alias lt='ls -lt' # sort with recently modified first
 alias md='mkdir -p'
-alias s='cd ..'   # up one dir
 
-function take() { 
-    mkdir -p "$1"
-    cd "$1" 
-}
-
-alias e='exit'
 alias k9="killall -9"
 function killnamed () { 
     ps ax | grep $1 | cut -d ' ' -f 2 | xargs kill 
@@ -42,12 +17,6 @@ function killnamed () {
 function zipr() {
   zip -r $1.zip $1
 }
-
-# Finder
-alias o='open . &'
-alias ff='open -a Firefox'
-
-# General code
 
 # From Chris Wanstrath
 function pless() { 
@@ -58,27 +27,10 @@ function pless() {
 alias tu='top -o cpu' # cpu
 alias tm='top -o vsize' # memory
 
-
 # Git
 alias ungit="find . -name '.git' -exec rm -rf {} \;"
-alias gb='git branch'
-alias gba='git branch -a'
-alias gc='git commit -v'
-alias gca='git commit -v -a'
 # Commit pending changes and quote all args as message
-function gg() { 
-    git commit -v -a -m "$*"
-}
-alias gco='git checkout'
-alias gd='git diff'
-alias gdm='git diff master'
-alias glo='git log'
-alias gl='git pull'
 alias gnp="git-notpushed"
-alias gp='git push'
-alias gst='git status'
-alias gt='git status'
-alias g='git status'
 alias eg='mate .git/config'
 # Git clone from GitHub
 function gch() {
@@ -104,40 +56,6 @@ function new-git() {
   git config push.default current
 }
 
-
-# TextMate
-alias et="mate"
-alias ett="mate ."
-alias etr="mate app config lib db schema public spec test vendor/gems vendor/plugins Rakefile Capfile Vladfile Todofile README stories merb slices tasks features &"
-
-# Ruby
-alias r="rake"
-
-function markdown() { 
-/Applications/TextMate.app/Contents/SharedSupport/Support/bin/Markdown.pl $1 > $1.html 
-}
-
-# Rails
-alias mr='mongrel_rails start'
-alias ms='mongrel_rails stop'
-alias rp='touch tmp/restart.txt'
-alias sc='./script/console'
-alias sg='./script/generate'
-alias sp='./script/plugin'
-alias ss='./script/server'
-alias tl='tail -f log/*.log'
-alias ts='thin start'
-
-alias bdbm='bundle exec rake db:migrate'
-alias bdbp='bundle exec rake db:test:prepare'
-alias bdbc='bundle exec rake db:test:clone'
-
-
-# TDD / BDD
-
-alias aa='autotest'
-alias aaf='autotest -f' # Don't run all at start
-alias aas="./script/autospec"
 
 # Setup a tunnel
 function haproxyssh() { 
@@ -188,15 +106,100 @@ function __rm_single_file(){
     fi
 }
 
+# Heroku
+## Heroku staging
+alias staging='heroku run console --remote staging'
+alias staging-process='watch heroku ps --remote staging'
+alias staging-releases='heroku releases --remote staging'
+alias staging-tail='heroku logs --tail --remote staging'
+
+## Heroku production
+alias production='heroku run console --remote production'
+alias production-process='watch bundle exec heroku ps --remote production'
+alias production-releases='heroku releases --remote production'
+alias production-tail='heroku logs --tail --remote production'
+
+## Heroku databases
+alias db-pull-staging='heroku db:pull --remote staging --confirm `basename $PWD`-staging'
+alias db-pull-production='heroku db:pull --remote production --confirm `basename $PWD`-production'
+alias db-copy-production-to-staging='heroku pgbackups:restore DATABASE `heroku pgbackups:url --remote production` --remote staging  --confirm `basename $PWD`-staging'
+alias db-backup-production='heroku pgbackups:capture --remote production'
+alias db-backups='heroku pgbackups --remote production'
 
 
-# SVN
-alias svnaddall="svn status | grep ^? | awk '{print \$2}' | xargs -r /usr/share/subversion1.6.12/subversion/svn/svn add"
+# Tested
 
+## Navigation
+alias cdm='cd ~/Sites/marketplace'
+alias cdg='cd ~/Github'
+alias cds='cd ~/Sites'
+alias cg='cd /Library/Ruby/Gems/1.8/gems/'
 
-# Envato
+## Admin
+alias ss='cdm && unicorn_rails --config-file ~/.unicorn.rb'
+alias sss='cdm && script/server'
+alias sc='cdm && script/console'
+alias sd='cdm && script/dbconsole'
+
+# Utility
+alias reload='. ~/.bash_profile'
+alias ea='subl -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
+alias ee="subl ~/bin/dotfiles/bash/env"
+alias s='cd ..'   # up one dir
+alias h='history'
+alias cdd='cd -'  # goto last dir cd'ed from
+alias cl='clear; l'
+alias o='open . &'
+function cdc() { 
+    cd $1; ls 
+}
+alias cls='clear; ls'
+function take() { 
+    mkdir -p "$1"
+    cd "$1" 
+}
+
+## Deployment
+alias cs='bundle exec cap shell GATEWAY=true ROLES=cc_node'
+alias dp='bundle exec deploy:production'
+
+## Front End
+alias rj='bundle exec rake juicer'
+alias gc='cdm && guard -g coffee'
+
+## Git
+alias gul='git smart-log'
+alias gm='git smart-merge'
+alias gup='git smart-pull'
+
+alias gb='git branch'
+alias gd='git diff'
+alias gdm='git diff master'
+alias gl='git log'
+alias gco='git checkout'
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gba='git branch -a'
+function gg() { 
+    git commit -m "$*"
+}
+alias gp='git push'
+alias g='git status'
+
+## TDD
 alias bswf='bundle exec rake swarm:features'
 alias bsws='bundle exec rake swarm:specs'
-alias cdm='cd ~/Sites/marketplace'
+alias cu='cucumber'
+alias cup='cucumber -f pretty'
+alias cul='cucumber log'
+alias sp='spec'
+alias gr='cdm && guard -g rspec'
 
-
+## Rails
+alias be="bundle exec"
+alias bdbm='bundle exec rake db:migrate'
+alias bdbp='bundle exec rake db:test:prepare'
+alias bdbc='bundle exec rake db:test:clone'
+alias tl='tail -f log/*.log'
+alias r="rake"
+# alias rp='touch tmp/restart.txt'
