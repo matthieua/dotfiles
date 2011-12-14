@@ -1,7 +1,6 @@
 # Common -- Some are from Damian Conway
 alias a='ls -A' # -A all except literal . ..
 alias la="ls -A -l -G"
-alias c='clear'
 alias l.='ls -d .[^.]*'
 alias l='ls -lhGt'  # -l long listing, most recent first
                     # -G color
@@ -18,21 +17,7 @@ function zipr() {
   zip -r $1.zip $1
 }
 
-# From Chris Wanstrath
-function pless() { 
-    pygmentize $1 | less -r 
-}
-
-# Processes
-alias tu='top -o cpu' # cpu
-alias tm='top -o vsize' # memory
-
 # Git
-alias ungit="find . -name '.git' -exec rm -rf {} \;"
-# Commit pending changes and quote all args as message
-alias gnp="git-notpushed"
-alias eg='mate .git/config'
-# Git clone from GitHub
 function gch() {
   git clone git://github.com/$USER/$1.git
 }
@@ -67,45 +52,6 @@ function jsc() {
   jsl -conf /etc/jsl/jsl.conf -process $1 
 }
 
-
-
-# From http://github.com/suztomo/dotfiles
-function rmf(){
-    for file in $*
-    do
-        __rm_single_file $file
-    done
-}
-
-function __rm_single_file(){
-    if ! [ -d ~/.Trash/ ]
-    then
-        command /bin/mkdir ~/.Trash
-    fi
-
-    if ! [ $# -eq 1 ]
-    then
-        echo "__rm_single_file: 1 argument required but $# passed."
-        exit
-    fi
-
-    if [ -e $1 ]
-    then
-        BASENAME=`basename $1`
-        NAME=$BASENAME
-        COUNT=0
-        while [ -e ~/.Trash/$NAME ]
-        do
-            COUNT=$(($COUNT+1))
-            NAME="$BASENAME.$COUNT"
-        done
-
-        command /bin/mv $1 ~/.Trash/$NAME
-    else
-        echo "No such file or directory: $file"
-    fi
-}
-
 # Heroku
 ## Heroku staging
 alias staging='heroku run console --remote staging'
@@ -129,31 +75,33 @@ alias db-backups='heroku pgbackups --remote production'
 
 # Tested
 
-## Navigation
+## Envato
 alias cdm='cd ~/Sites/marketplace'
-alias cdg='cd ~/Github'
-alias cds='cd ~/Sites'
-alias cg='cd /Library/Ruby/Gems/1.8/gems/'
-
-## Admin
+alias rj='bundle exec rake juicer'
+alias gc='cdm && guard -g coffee'
 alias ss='cdm && unicorn_rails --config-file ~/.unicorn.rb'
 alias sss='cdm && script/server'
 alias sc='cdm && script/console'
 alias sd='cdm && script/dbconsole'
 
+## Navigation
+alias cdg='cd ~/Github'
+alias cds='cd ~/Sites'
+alias cg='cd /Library/Ruby/Gems/1.8/gems/'
+
 # Utility
 alias reload='. ~/.bash_profile'
 alias ea='subl -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
 alias ee="subl ~/bin/dotfiles/bash/env"
-alias s='cd ..'   # up one dir
 alias h='history'
-alias cdd='cd -'  # goto last dir cd'ed from
+alias c='clear'
+alias s='cd ..'   # up one dir
+alias cls='clear; ls'
 alias cl='clear; l'
 alias o='open . &'
-function cdc() { 
+function cdl() { 
     cd $1; ls 
 }
-alias cls='clear; ls'
 function take() { 
     mkdir -p "$1"
     cd "$1" 
@@ -163,15 +111,8 @@ function take() {
 alias cs='bundle exec cap shell GATEWAY=true ROLES=cc_node'
 alias dp='bundle exec deploy:production'
 
-## Front End
-alias rj='bundle exec rake juicer'
-alias gc='cdm && guard -g coffee'
 
 ## Git
-alias gul='git smart-log'
-alias gm='git smart-merge'
-alias gup='git smart-pull'
-
 alias gb='git branch'
 alias gd='git diff'
 alias gdm='git diff master'
@@ -180,11 +121,18 @@ alias gco='git checkout'
 alias gc='git commit -v'
 alias gca='git commit -v -a'
 alias gba='git branch -a'
+alias gp='git push'
+alias g='git status'
+alias eg='subl .git/config'
+alias ungit="find . -name '.git' -exec rm -rf {} \;"
 function gg() { 
     git commit -m "$*"
 }
-alias gp='git push'
-alias g='git status'
+
+## Git-Smart
+alias gul='git smart-log'
+alias gm='git smart-merge'
+alias gup='git smart-pull'
 
 ## TDD
 alias bswf='bundle exec rake swarm:features'
@@ -202,4 +150,7 @@ alias bdbp='bundle exec rake db:test:prepare'
 alias bdbc='bundle exec rake db:test:clone'
 alias tl='tail -f log/*.log'
 alias r="rake"
-# alias rp='touch tmp/restart.txt'
+
+# Processes
+alias tu='top -o cpu' # cpu
+alias tm='top -o vsize' # memory
