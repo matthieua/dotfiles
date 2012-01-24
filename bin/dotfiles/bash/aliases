@@ -87,6 +87,7 @@ alias sd='cdm && script/dbconsole'
 ## Navigation
 alias cdg='cd ~/Github'
 alias cds='cd ~/Sites'
+alias cdd='cd ~/Dropbox'
 alias cg='cd /Library/Ruby/Gems/1.8/gems/'
 
 # Utility
@@ -135,11 +136,12 @@ alias gm='git smart-merge'
 alias gup='git smart-pull'
 
 ## TDD
-alias bswf='bundle exec rake swarm:features'
-alias bsws='bundle exec rake swarm:specs'
+alias bswf='bundle exec rake swarm:features RAILS_ENV=cucumber'
+alias bsws='bundle exec rake swarm:specs RAILS_ENV=test'
 alias cu='cucumber'
 alias cup='cucumber -f pretty'
 alias cul='cucumber log'
+alias wip='bundle exec cucumber -p wip'
 alias sp='spec'
 alias gr='cdm && guard -g rspec'
 
