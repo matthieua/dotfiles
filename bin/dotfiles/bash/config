@@ -51,4 +51,3 @@ function plain_git_branch {
   git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///'
 }
  
-PS1="$GREEN\$(date '+%H:%M:%S') $BLUE\u@\h$WHITE \w $RED\$(parse_git_branch)$NO_COLOR\n→ "
