@@ -35,6 +35,10 @@ source $ZSH/oh-my-zsh.sh
 
 . ~/bin/dotfiles/bashrc
 
-export PATH=/usr/local/bin:/Users/matthieu/.rvm/gems/ree-1.8.7-2011.03@global/bin:/Users/matthieu/.rvm/gems/ree-1.8.7-2011.03@global/bin:/Users/matthieu/.rvm/rubies/ree-1.8.7-2011.03/bin:/Users/matthieu/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin
+export PATH=/usr/local/bin:/Users/matthieu/.rvm/gems/ree-1.8.7-2011.03@global/bin:/Users/matthieu/.rvm/gems/ree-1.8.7-2011.03@global/bin:/Users/matthieu/.rvm/rubies/ree-1.8.7-2011.03/bin:/Users/matthieu/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:/usr/local/mysql/bin:$PATH
 
+ssh-add
+
+# RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+rvm use ree
