@@ -1,0 +1,32 @@
+[user]
+  name = Matthieu Aussaguel
+  email = matthieu.aussaguel@gmail.com
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[apply]
+  whitespace = nowarn
+[branch]
+  autosetupmerge = true
+[alias]
+  st = status
+  cav = commit -a -v
+  co = checkout
+[push]
+  default = current
+[core]
+  mergeoptions = --no-ff

@@ -78,20 +78,23 @@ alias db-backups='heroku pgbackups --remote production'
 ## Envato
 alias cdm='cd ~/Sites/marketplace'
 alias rj='bundle exec rake juicer'
-alias gc='cdm && guard -g coffee'
-alias ss='cdm && unicorn_rails --config-file ~/.unicorn.rb'
-alias sss='cdm && script/server'
+alias gcoffee='cdm && be guard -g coffee'
+alias ss='cdm && script/server'
+alias sss='cdm && script/server --no-unicorn'
 alias sc='cdm && script/console'
 alias sd='cdm && script/dbconsole'
+alias sed='gsed'
+alias build='git push -f origin HEAD:remote-run/matthieua/run'
 
 ## Navigation
 alias cdg='cd ~/Github'
+alias cdv='cd ~/Vagrant'
 alias cds='cd ~/Sites'
 alias cdd='cd ~/Dropbox'
 alias cg='cd /Library/Ruby/Gems/1.8/gems/'
 
 # Utility
-alias reload='. ~/.bash_profile'
+alias reload='. ~/.zshrc'
 alias ea='subl -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
 alias ee="subl ~/bin/dotfiles/bash/env"
 alias h='history'
@@ -118,12 +121,14 @@ alias gb='git branch'
 alias gd='git diff'
 alias gdm='git diff master'
 alias gl='git log'
+alias ga='git add'
 alias gco='git checkout'
 alias gc='git commit -v'
 alias gca='git commit -v -a'
 alias gba='git branch -a'
 alias gp='git push'
 alias g='git status'
+alias gre='git rev-parse HEAD'
 alias eg='subl .git/config'
 alias ungit="find . -name '.git' -exec rm -rf {} \;"
 function gg() { 
@@ -138,11 +143,12 @@ alias gup='git smart-pull'
 ## TDD
 alias bswf='bundle exec rake swarm:features RAILS_ENV=cucumber'
 alias bsws='bundle exec rake swarm:specs RAILS_ENV=test'
-alias cu='cucumber'
-alias cup='cucumber -f pretty'
-alias cul='cucumber log'
-alias wip='bundle exec cucumber -p wip'
-alias sp='spec'
+alias cu='bundle exec cucumber'
+alias cup='bundle exec cucumber -f pretty'
+alias cul='bundle exec cucumber log'
+alias cwip='bundle exec cucumber -p wip'
+alias sp='bundle exec spec'
+alias rsp='bundle exec rspec'
 alias gr='cdm && guard -g rspec'
 
 ## Rails
