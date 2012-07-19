@@ -76,7 +76,7 @@ alias db-backups='heroku pgbackups --remote production'
 # Tested
 
 ## Envato
-alias cdm='cd ~/Sites/marketplace'
+alias cdm='cd ~/Dropbox/Github/Envato/marketplace'
 alias rj='bundle exec rake juicer'
 alias gcoffee='cdm && be guard -g coffee'
 alias ss='cdm && script/server'
@@ -85,12 +85,17 @@ alias sc='cdm && script/console'
 alias sd='cdm && script/dbconsole'
 alias sed='gsed'
 alias build='git push -f origin HEAD:remote-run/matthieua/run'
+alias current_revision='curl http://themeforest.net/admin/developers/revision'
 
 ## Navigation
-alias cdg='cd ~/Github'
+alias cdg='cd ~/Dropbox/Github'
+alias cdge='cd ~/Dropbox/Github/Envato'
+alias cdgo='cd ~/Dropbox/Github/Other'
+alias cdgm='cd ~/Dropbox/Github/MiniJs'
 alias cdv='cd ~/Vagrant'
 alias cds='cd ~/Sites'
 alias cdd='cd ~/Dropbox'
+alias desk='cd ~/Desktop'
 alias cg='cd /Library/Ruby/Gems/1.8/gems/'
 
 # Utility

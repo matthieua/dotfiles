@@ -29,12 +29,14 @@ ZSH_THEME="matthieua"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git bundler brew heroku vagrant)
+plugins=(git bundler brew heroku vagrant sublime)
 
 source $ZSH/oh-my-zsh.sh
 
 . ~/bin/dotfiles/bashrc
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:/usr/local/mysql/bin:$PATH
+export PATH=~/.rbenv/bin:~/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:/usr/local/mysql/bin:$PATH
+
+git config --global core.editor vim
 
 ssh-add
