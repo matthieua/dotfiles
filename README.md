@@ -15,6 +15,7 @@ cp ~/Dropbox/Github/Other/dotfiles/.oh-my-zsh/themes/matthieua.zsh-theme .oh-my-
 ## Symlinks
 
 ln -s ~/Dropbox/Github/Other/dotfiles/.zshrc .zshrc
+ln -s ~/Dropbox/Github/Other/dotfiles/.rdebugrc .rdebugrc
 ln -s ~/Dropbox/Github/Other/dotfiles/bin bin  
 
 ## Restart terminal
