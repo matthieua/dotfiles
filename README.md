@@ -12,6 +12,10 @@ https://github.com/robbyrussell/oh-my-zsh/
 
 cp ~/Dropbox/Github/Other/dotfiles/.oh-my-zsh/themes/matthieua.zsh-theme .oh-my-zsh/themes/
 
+## OSX preferences
+
+sh ~/Dropbox/Github/Other/dotfiles/osx.sh
+
 ## Symlinks
 
 ln -s ~/Dropbox/Github/Other/dotfiles/.zshrc .zshrc
