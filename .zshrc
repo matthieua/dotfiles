@@ -37,6 +37,6 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=~/.rbenv/bin:~/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:/usr/local/mysql/bin:$PATH
 
-git config --global core.editor vim
+git config --global core.editor "~/bin/subl -w"
 
 ssh-add
