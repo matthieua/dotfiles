@@ -10,8 +10,8 @@ alias lt='ls -lt' # sort with recently modified first
 alias md='mkdir -p'
 
 alias k9="killall -9"
-function killnamed () { 
-    ps ax | grep $1 | cut -d ' ' -f 2 | xargs kill 
+function killnamed () {
+    ps ax | grep $1 | cut -d ' ' -f 2 | xargs kill
 }
 function zipr() {
   zip -r $1.zip $1
@@ -23,13 +23,13 @@ function gch() {
 }
 
 # Setup a tracking branch from [remote] [branch_name]
-function gbt() { 
-  git branch --track $2 $1/$2 && git checkout $2 
+function gbt() {
+  git branch --track $2 $1/$2 && git checkout $2
 }
 # Quickly clobber a file and checkout
-function grf() { 
+function grf() {
   rm $1
-  git checkout $1 
+  git checkout $1
 }
 # Call from inside an initialized Git repo, with the name of the repo.
 function new-git() {
@@ -43,14 +43,19 @@ function new-git() {
 
 
 # Setup a tunnel
-function haproxyssh() { 
-  ssh -L7997:127.0.0.1:7997 deploy@$1.com 
+function haproxyssh() {
+  ssh -L7997:127.0.0.1:7997 deploy@$1.com
 }
 
 # Syntax check Javascript
-function jsc() { 
-  jsl -conf /etc/jsl/jsl.conf -process $1 
+function jsc() {
+  jsl -conf /etc/jsl/jsl.conf -process $1
 }
+
+# PostgreSQL
+alias pstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias pstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+
 
 # Heroku
 ## Heroku staging
@@ -76,16 +81,11 @@ alias db-backups='heroku pgbackups --remote production'
 # Tested
 
 ## Envato
-alias cdm='cd ~/Dropbox/Github/Envato/marketplace'
-alias rj='bundle exec rake juicer'
-alias gcoffee='cdm && be guard -g coffee'
-alias ss='cdm && script/server'
-alias sss='cdm && script/server --no-unicorn'
-alias sc='cdm && script/console'
-alias sd='cdm && script/dbconsole'
-alias sed='gsed'
-alias build='git push -f origin HEAD:remote-run/matthieua/run'
-alias current_revision='curl http://themeforest.net/admin/developers/revision'
+alias cdm='cd ~/Sites/microlancer'
+alias seed='rake dev:seed'
+alias ss='cdm && rails server'
+alias sc='cdm && rails console'
+alias sd='cdm && rails dbconsole'
 
 ## Navigation
 alias cdg='cd ~/Dropbox/Github'
@@ -108,12 +108,12 @@ alias s='cd ..'   # up one dir
 alias cls='clear; ls'
 alias cl='clear; l'
 alias o='open . &'
-function cdl() { 
-    cd $1; ls 
+function cdl() {
+    cd $1; ls
 }
-function take() { 
+function take() {
     mkdir -p "$1"
-    cd "$1" 
+    cd "$1"
 }
 
 ## Deployment
@@ -131,12 +131,13 @@ alias gco='git checkout'
 alias gc='git commit -v'
 alias gca='git commit -v -a'
 alias gba='git branch -a'
-alias gp='git push'
+alias gp='git push origin $(current_branch)'
 alias g='git status'
 alias gre='git rev-parse HEAD'
 alias eg='subl .git/config'
 alias ungit="find . -name '.git' -exec rm -rf {} \;"
-function gg() { 
+alias git="hub"
+function gg() {
     git commit -m "$*"
 }
 
@@ -152,12 +153,11 @@ alias cu='bundle exec cucumber'
 alias cup='bundle exec cucumber -f pretty'
 alias cul='bundle exec cucumber log'
 alias cwip='bundle exec cucumber -p wip'
-alias sp='bundle exec spec'
-alias rsp='bundle exec rspec'
+alias sp='bundle exec rspec'
 alias gr='cdm && guard -g rspec'
 
 ## Rails
-alias be="bundle exec"
+alias b="bundle exec"
 alias bdbm='bundle exec rake db:migrate'
 alias bdbp='bundle exec rake db:test:prepare'
 alias bdbc='bundle exec rake db:test:clone'
@@ -167,3 +167,25 @@ alias r="rake"
 # Processes
 alias tu='top -o cpu' # cpu
 alias tm='top -o vsize' # memory
+
+# Zeus
+alias z="zeus"
+alias zc="zeus console"
+alias zg="zeus generate"
+alias zs="zeus server"
+alias zsp="zeus rspec"
+alias zspec="zeus rspec spec"
+alias zdb="zeus dbconsole"
+alias zr="zeus rake"
+
+# Powder
+alias p="powder"
+
+# Debugger
+alias debug="rdebug -c"
+
+# Postgres
+alias psqls="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+
+# Railscamp
+alias cdp="cds && cd guidefindr"

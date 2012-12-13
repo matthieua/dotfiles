@@ -29,14 +29,15 @@ ZSH_THEME="matthieua"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git bundler brew heroku vagrant sublime)
+plugins=(git brew heroku vagrant sublime bundler)
+
+export HISTSIZE=100000 SAVEHIST=100000 HISTFILE=~/.zhistory
 
 source $ZSH/oh-my-zsh.sh
 
 . ~/bin/dotfiles/bashrc
 
-export PATH=~/.rbenv/bin:~/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:/usr/local/mysql/bin:$PATH
-
+export PATH=~/.rbenv/bin:~/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/Users/matt/bin:/usr/local/mysql/bin:/Users/matt/bin:/Users/matt/.bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/Users/matt/bin:/Users/matt/.bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
 git config --global core.editor "~/bin/subl -w"
 
-ssh-add
+export EDITOR=subl

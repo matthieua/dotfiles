@@ -10,7 +10,7 @@ https://github.com/robbyrussell/oh-my-zsh/
 
 ## Copy ZSH theme
 
-cp ~/Dropbox/Github/Other/dotfiles/.oh-my-zsh/themes/matthieua.zsh-theme .oh-my-zsh/themes/
+cp ~/Dropbox/Github/Other/dotfiles/.oh-my-zsh/themes/matthieua.zsh-theme ~/.oh-my-zsh/themes 
 
 ## OSX preferences
 

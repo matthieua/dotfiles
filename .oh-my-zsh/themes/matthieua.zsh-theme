@@ -1,9 +1,8 @@
-PROMPT=$'%{$fg_bold[blue]%}%n@%m %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} $(git_prompt_info)\
-%{$fg[blue]%}$%{$fg[blue]%} '
-RPROMPT='%{$fg[white]%}[%*]'
+PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_prompt_info)$ '
+RPROMPT='[%*]'
 
-
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[red]%}["
-ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}*%{$fg[red]%}"
+# git theming
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg_no_bold[red]%}%B"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%b%{$fg_bold[blue]%})%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_CLEAN=""
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%} ✗"
