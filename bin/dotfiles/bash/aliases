@@ -57,18 +57,58 @@ alias pstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/serve
 alias pstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 
 
+# Localtunnel
+alias lc='ngrok 3000'
+
+# Rails
+alias r='rails'
+
 # Heroku
+alias h='heroku'
+alias hl='heroku logs --tail'
+
+## Heroku
+alias console='h run rails console'
+alias heroku-process='watch bundle exec heroku ps'
+alias heroku-releases='heroku releases'
+alias heroku-tail='heroku logs --tail'
+alias heroku-maintenance-on='heroku maintenance:on'
+alias heroku-maintenance-off='heroku maintenance:off'
+alias heroku-stop='heroku stop'
+alias heroku-restart='heroku restart'
+alias heroku-worker-restart='heroku restart worker.1'
+alias heroku-worker-stop='heroku stop worker.1'
+alias heroku-config='heroku config'
+alias heroku-backup='heroku pgbackups:capture --expire'
+
 ## Heroku staging
-alias staging='heroku run console --remote staging'
+alias staging='h run rails console --remote staging'
 alias staging-process='watch heroku ps --remote staging'
 alias staging-releases='heroku releases --remote staging'
 alias staging-tail='heroku logs --tail --remote staging'
+alias staging-restart='heroku restart --remote staging'
+alias staging-maintenance-on='heroku maintenance:on --remote staging'
+alias staging-maintenance-off='heroku maintenance:off --remote staging'
+alias staging-stop='heroku stop --remote staging'
+alias staging-worker-restart='heroku restart worker.1 --remote staging'
+alias staging-worker-stop='heroku stop worker.1 --remote staging'
+alias staging-config='heroku config --remote staging'
+alias staging-backup='heroku pgbackups:capture --expire --remote staging'
 
 ## Heroku production
-alias production='heroku run console --remote production'
+alias production='h run rails console --remote production'
 alias production-process='watch bundle exec heroku ps --remote production'
 alias production-releases='heroku releases --remote production'
 alias production-tail='heroku logs --tail --remote production'
+alias production-maintenance-on='heroku maintenance:on --remote production'
+alias production-maintenance-off='heroku maintenance:off --remote production'
+alias production-stop='heroku stop --remote production'
+alias production-restart='heroku restart --remote production'
+alias production-worker-restart='heroku restart worker.1 --remote production'
+alias production-worker-stop='heroku stop worker.1 --remote production'
+alias production-config='heroku config --remote production'
+alias production-backup='heroku pgbackups:capture --expire --remote production'
+
 
 ## Heroku databases
 alias db-pull-staging='heroku db:pull --remote staging --confirm `basename $PWD`-staging'
@@ -81,19 +121,16 @@ alias db-backups='heroku pgbackups --remote production'
 # Tested
 
 ## Envato
-alias cdm='cd ~/Sites/microlancer'
-alias seed='rake dev:seed'
-alias ss='cdm && rails server'
-alias sc='cdm && rails console'
-alias sd='cdm && rails dbconsole'
+alias cdm='cd ~/Dropbox/Sites/uplabs'
 
 ## Navigation
 alias cdg='cd ~/Dropbox/Github'
 alias cdge='cd ~/Dropbox/Github/Envato'
 alias cdgo='cd ~/Dropbox/Github/Other'
-alias cdgm='cd ~/Dropbox/Github/MiniJs'
 alias cdv='cd ~/Vagrant'
-alias cds='cd ~/Sites'
+alias cds='cd ~/Dropbox/Sites/stack-finder'
+alias cdr='cd ~/Dropbox/Sites/redux-on-rails'
+alias cda='cd ~/Dropbox/Sites/angular-on-rails'
 alias cdd='cd ~/Dropbox'
 alias desk='cd ~/Desktop'
 alias cg='cd /Library/Ruby/Gems/1.8/gems/'
@@ -102,7 +139,7 @@ alias cg='cd /Library/Ruby/Gems/1.8/gems/'
 alias reload='. ~/.zshrc'
 alias ea='subl -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
 alias ee="subl ~/bin/dotfiles/bash/env"
-alias h='history'
+alias his='history'
 alias c='clear'
 alias s='cd ..'   # up one dir
 alias cls='clear; ls'
@@ -117,8 +154,7 @@ function take() {
 }
 
 ## Deployment
-alias cs='bundle exec cap shell GATEWAY=true ROLES=cc_node'
-alias dp='bundle exec deploy:production'
+alias deploy='rspec spec && rake teaspoon && git push origin master && git push heroku master'
 
 
 ## Git
@@ -137,6 +173,7 @@ alias gre='git rev-parse HEAD'
 alias eg='subl .git/config'
 alias ungit="find . -name '.git' -exec rm -rf {} \;"
 alias git="hub"
+alias gis="git browse -- issues"
 function gg() {
     git commit -m "$*"
 }
@@ -147,14 +184,8 @@ alias gm='git smart-merge'
 alias gup='git smart-pull'
 
 ## TDD
-alias bswf='bundle exec rake swarm:features RAILS_ENV=cucumber'
-alias bsws='bundle exec rake swarm:specs RAILS_ENV=test'
-alias cu='bundle exec cucumber'
-alias cup='bundle exec cucumber -f pretty'
-alias cul='bundle exec cucumber log'
-alias cwip='bundle exec cucumber -p wip'
 alias sp='bundle exec rspec'
-alias gr='cdm && guard -g rspec'
+alias be='bundle exec'
 
 ## Rails
 alias b="bundle exec"
@@ -163,20 +194,62 @@ alias bdbp='bundle exec rake db:test:prepare'
 alias bdbc='bundle exec rake db:test:clone'
 alias tl='tail -f log/*.log'
 alias r="rake"
+alias bu="bundle update && yarn upgrade && yarn outdated && bundle outdated"
+alias morning="git fetch --all && update && bu"
+alias install="bundle install && npm install"
+alias update="brew update && brew upgrade && gem update --system && gem update && npm update -g"
 
 # Processes
 alias tu='top -o cpu' # cpu
 alias tm='top -o vsize' # memory
 
-# Zeus
-alias z="zeus"
-alias zc="zeus console"
-alias zg="zeus generate"
-alias zs="zeus server"
-alias zsp="zeus rspec"
-alias zspec="zeus rspec spec"
-alias zdb="zeus dbconsole"
-alias zr="zeus rake"
+# Wercker
+alias w="wercker"
+alias ws="wercker status"
+alias wo="wercker open"
+alias wb="wercker builds"
+
+# Git
+function delete-branch() {
+  git branch -d $1
+  git push origin --delete $1
+}
+
+alias r="rails"
+alias rs="rails s -b 127.0.0.1 -p 3000"
+alias rc="rails console"
+alias rg="rails generate"
+alias sp="rspec"
+alias rt="rake teaspoon"
+alias rdb="rails dbconsole"
+alias rr="rake"
+alias fw="bundle exec foreman start webpack"
+alias fs="bundle exec foreman start web"
+alias fk="bundle exec foreman start worker"
+alias rdbm="rake db:migrate && rake db:test:prepare"
+alias rreset="rake db:schema:load && rake db:migrate && rake db:seed"
+
+# spring
+alias sc="spring rails console"
+alias sg="spring rails generate"
+alias ss="spring rails server"
+alias ssp="spring rspec"
+alias sst="spring rspec spec && spring teaspoon"
+alias st="spring teaspoon"
+alias sj="spring rake teaspoon"
+alias sdb="spring rails dbconsole"
+alias sr="spring rake"
+alias sm="sr db:migrate && sr db:test:prepare"
+alias sreset="sr db:schema:load && sr db:migrate && sr db:seed"
+
+# Fliplingo
+alias clock="bundle exec clockwork ./lib/crons/clock.rb"
+alias cdf='cd ~/Dropbox/Sites/fliplingo'
+alias cdw='cd ~/Dropbox/Sites/WOW'
+alias cdl='cd ~/Dropbox/Sites/materialpalette'
+alias cdp='cd ~/Dropbox/Sites/uplabs-pulse'
+alias cdfz='cdf && spring start'
+alias kiq='bundle exec sidekiq'
 
 # Powder
 alias p="powder"
@@ -187,5 +260,8 @@ alias debug="rdebug -c"
 # Postgres
 alias psqls="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 
-# Railscamp
-alias cdp="cds && cd guidefindr"
+# JS console
+alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc'
+
+# Forward port 3000 to 80
+alias pfwd='sudo ipfw add 1 forward 127.0.0.1,3000 ip from any to any 80 in'
