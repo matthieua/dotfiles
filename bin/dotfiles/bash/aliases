@@ -195,7 +195,7 @@ alias bdbc='bundle exec rake db:test:clone'
 alias tl='tail -f log/*.log'
 alias r="rake"
 alias bu="bundle update && yarn upgrade && yarn outdated && bundle outdated"
-alias morning="git fetch --all && update && bu"
+alias morning="git fetch --all && bu"
 alias install="bundle install && npm install"
 alias update="brew update && brew upgrade && gem update --system && gem update && npm update -g"
 
@@ -247,6 +247,7 @@ alias clock="bundle exec clockwork ./lib/crons/clock.rb"
 alias cdf='cd ~/Dropbox/Sites/fliplingo'
 alias cdw='cd ~/Dropbox/Sites/WOW'
 alias cdl='cd ~/Dropbox/Sites/materialpalette'
+alias cdb='cd ~/Dropbox/Sites/paperrail'
 alias cdp='cd ~/Dropbox/Sites/uplabs-pulse'
 alias cdfz='cdf && spring start'
 alias kiq='bundle exec sidekiq'
